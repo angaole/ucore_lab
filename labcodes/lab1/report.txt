@@ -276,6 +276,7 @@ BIOS汇编指令，在gdb中nexti进行单步跟踪。
 	    call bootmain
 
 [练习4] ：分析bootloader加载ELF格式的OS的过程。
+bootloader通过readsect和readdesc函数进行硬盘的读写
 首先看readsect函数，
 readsect从设备的第secno扇区读取数据到dst位置
 	static void
@@ -316,7 +317,7 @@ readseg简单包装了readsect，可以从设备读取任意长度的内容。
 	    }
 	}
 
-
+bootloader通过bootmain加载ELF格式的OS
 在bootmain函数中，
 	void
 	bootmain(void) {
@@ -350,4 +351,7 @@ readseg简单包装了readsect，可以从设备读取任意长度的内容。
 	    outw(0x8A00, 0x8E00);
 	    while (1);
 	}
+
+[练习5] 实现函数调用堆栈跟踪函数 
+
 
